@@ -1,7 +1,7 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;
 import taxType.IncomeTaxType;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BillTest {
@@ -15,8 +15,9 @@ public class BillTest {
         Bill bill = new Bill(amount, incomeTaxType, taxService);
 
         final String expected = TaxService.TEXT_FOR_OUT + incomeTaxType.calculateTaxFor(amount);
+        final String result = bill.payTaxes();
 
-        Assertions.assertEquals(expected, bill.payTaxes());
+        assertThat(result, result.equals(expected));
     }
 
     @Test
